@@ -2,13 +2,13 @@ import axios from 'axios' // 引入axios
 import { Message } from 'element-ui'
 import store from '@/stores'
 
-if (process.env.NODE_ENV === 'development') {
-  axios.defaults.baseURL = 'http://localhost:8081'
-} else if (process.env.NODE_ENV === 'debug') {
-  axios.defaults.baseURL = 'http://localhost:8081'
-} else if (process.env.NODE_ENV === 'production') {
-  axios.defaults.baseURL = 'http://localhost:8081'
-}
+// if (process.env.NODE_ENV === 'development') {
+//   axios.defaults.baseURL = 'http://localhost:8081'
+// } else if (process.env.NODE_ENV === 'debug') {
+//   axios.defaults.baseURL = 'http://localhost:8081'
+// } else if (process.env.NODE_ENV === 'production') {
+//   axios.defaults.baseURL = 'http://localhost:8081'
+// }
 
 axios.defaults.timeout = 10000
 
@@ -34,6 +34,8 @@ axios.interceptors.response.use(
     // 否则的话抛出错误
     if (response.status === 200) {
       if (response.data != null && response.data.code === '1') {
+        return Promise.resolve(response)
+      } else if (response.data != null) {
         return Promise.resolve(response)
       } else {
         return Promise.reject(response)
@@ -106,14 +108,14 @@ axios.interceptors.response.use(
 )
 
 // 返回一个Promise(发送post请求)
-export function fetch (url, params) {
+export function fetch (url, params, config) {
   // axios.defaults.headers.accesstoken = sessionStorage.getItem('access_token')
   //   ? AES.decrypt(sessionStorage.getItem('access_token'))
   //   : ''
   url = (process.env.NODE_ENV === 'development' ? '' : '') + url
   return new Promise((resolve, reject) => {
     axios
-      .post(url, params)
+      .post(url, params, config)
       .then(response => {
         if (response.data.code === 401 || response.data.code === 402) {
           // logout()
@@ -152,13 +154,20 @@ export function fetchGet (url, params) {
 export default {
 
   login (params) {
-    return fetch('/login', params)
+    return fetch('/user/login', params)
   },
   register (params) {
-    return fetch('/register', params)
+    return fetch('/user/register', params)
   },
   hello () {
-    return fetchGet('/hello', {})
+    return fetchGet('/user/hello', {})
+  },
+  getFsData () {
+    return fetch('/indexfs/_doc/_search?pretty', {
+      'query': { 'match_phrase': { 'userId': '123456' } },
+      'from': 1,
+      'size': 100
+    })
   }
 
 }

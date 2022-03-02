@@ -49,7 +49,7 @@ export default {
           Message('登录成功')
           this.$store.commit('setToken', response.data.data.token)
           this.$router.replace({
-            path: '/hello'
+            path: '/chartline'
           })
         })
         .catch(response => {
@@ -70,7 +70,6 @@ export default {
     Container
   },
   mounted () {
-
   }
 }
 </script>

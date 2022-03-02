@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import HelloWorld from '@/views/LoganTest/HelloWorld'
 import Login from '@/views/UserComponent/Login'
 import Register from '@/views/UserComponent/Register'
+import ChartLine from '@/views/Graph/ChartLine'
 
 Vue.use(Router)
 
@@ -22,6 +23,11 @@ export default new Router({
       path: '/register',
       name: 'Register',
       component: Register
+    },
+    {
+      path: '/chartline',
+      name: 'ChartLine',
+      component: ChartLine
     }
   ]
 })
