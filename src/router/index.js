@@ -4,6 +4,7 @@ import HelloWorld from '@/views/LoganTest/HelloWorld'
 import Login from '@/views/UserComponent/Login'
 import Register from '@/views/UserComponent/Register'
 import ChartLine from '@/views/Graph/ChartLine'
+import VChartComponent from '@/views/Graph/VChartComponent'
 
 Vue.use(Router)
 
@@ -28,6 +29,11 @@ export default new Router({
       path: '/chartline',
       name: 'ChartLine',
       component: ChartLine
+    },
+    {
+      path: '/vchartdemo',
+      name: 'VChartComponent',
+      component: VChartComponent
     }
   ]
 })
