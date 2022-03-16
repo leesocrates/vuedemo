@@ -5,6 +5,8 @@ import Login from '@/views/UserComponent/Login'
 import Register from '@/views/UserComponent/Register'
 import ChartLine from '@/views/Graph/ChartLine'
 import VChartComponent from '@/views/Graph/VChartComponent'
+import MenuHomePage from '@/views/Menu/MenuHomePage'
+import MenuDetail from '@/views/Menu/MenuDetail'
 
 Vue.use(Router)
 
@@ -34,6 +36,16 @@ export default new Router({
       path: '/vchartdemo',
       name: 'VChartComponent',
       component: VChartComponent
+    },
+    {
+      path: '/menupage',
+      name: 'MenuPage',
+      component: MenuHomePage
+    },
+    {
+      path: '/menu/detail',
+      name: 'menuDetail',
+      component: MenuDetail
     }
   ]
 })

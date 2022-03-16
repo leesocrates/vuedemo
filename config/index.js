@@ -24,6 +24,17 @@ module.exports = {
         pathRewrite: {
           '^/indexfs': ''
         }
+      },
+      '/menuapi': {
+        target: "http://localhost:8081",
+        changeOrigin: true,
+        pathRewrite: {
+          '^/menuapi': ''
+        }
+      },
+      '/images': {
+        target: "http://106.14.1.219:8887",
+        changeOrigin: true
       }
     },
 

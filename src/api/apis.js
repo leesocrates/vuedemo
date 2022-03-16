@@ -168,6 +168,13 @@ export default {
       'from': 1,
       'size': 100
     })
+  },
+  getMenuList (currentPage, pageSize, userId) {
+    return fetchGet('/menuapi/menu', {
+      currentPage,
+      pageSize,
+      userId
+    })
   }
 
 }

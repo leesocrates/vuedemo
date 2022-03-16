@@ -8,7 +8,8 @@ const store = new Vuex.Store({
   state () {
     return {
       message: 'hello lee',
-      token: ''
+      token: '',
+      userId: ''
     }
   },
   mutations: {
@@ -17,6 +18,9 @@ const store = new Vuex.Store({
     },
     setToken (state, value) {
       state.token = value
+    },
+    setUserId (state, value) {
+      state.userId = value
     }
   },
   actions: {

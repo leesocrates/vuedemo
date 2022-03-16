@@ -48,8 +48,9 @@ export default {
         .then(response => {
           Message('登录成功')
           this.$store.commit('setToken', response.data.data.token)
+          this.$store.commit('setUserId', response.data.data.userId)
           this.$router.replace({
-            path: '/chartline'
+            path: '/menupage'
           })
         })
         .catch(response => {
